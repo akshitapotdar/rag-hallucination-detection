@@ -1,8 +1,7 @@
 <div align="center">
 
-# 🧠 RAG Pipeline with Hallucination Detection
+# RAG Pipeline with Hallucination Detection
 
-### *A Retrieval-Augmented Generation system that doesn't just answer — it knows when it's wrong.*
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![LangChain](https://img.shields.io/badge/LangChain-0.3-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)](https://www.langchain.com/)
@@ -18,7 +17,7 @@
 
 ##  Overview
 
-Large Language Models hallucinate. They generate confident-sounding answers that aren't grounded in any real source — a critical failure mode in retrieval systems where users trust the output.
+Large Language Models hallucinate. They generate confident-sounding answers that aren't grounded in any real source, it's a critical failure mode in retrieval systems where users trust the output.
 
 This project implements a **four-layer hallucination detection system** on top of a standard RAG pipeline. Instead of just generating answers, it scores their reliability across multiple independent dimensions and combines them into a single verdict.
 
