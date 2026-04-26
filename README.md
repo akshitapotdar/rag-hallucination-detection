@@ -10,13 +10,13 @@
 [![FAISS](https://img.shields.io/badge/FAISS-Vector_DB-0467DF?style=for-the-badge)](https://github.com/facebookresearch/faiss)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-[Overview](#-overview) • [Features](#-features) • [How It Works](#-how-it-works) • [Quickstart](#-quickstart) • [Results](#-results) • [Roadmap](#-roadmap)
+
 
 ---
 
 </div>
 
-## 📌 Overview
+##  Overview
 
 Large Language Models hallucinate. They generate confident-sounding answers that aren't grounded in any real source — a critical failure mode in retrieval systems where users trust the output.
 
@@ -26,7 +26,7 @@ This project implements a **four-layer hallucination detection system** on top o
 
 ---
 
-## ✨ Features
+##  Features
 
 - 🔍 **Semantic Retrieval** — FAISS-powered vector search over your knowledge base
 - 🤖 **Lightweight Generation** — `flan-t5-base` for fast, focused answers
@@ -37,7 +37,7 @@ This project implements a **four-layer hallucination detection system** on top o
 
 ---
 
-## 🧬 How It Works
+##  How It Works
 
 <div align="center">
   <img src="assets/architecture.svg" alt="System Architecture" width="100%"/>
@@ -60,7 +60,7 @@ Each signal has different failure modes — by requiring agreement across all fo
 
 ---
 
-## 🚀 Quickstart
+##  Quickstart
 
 ### Prerequisites
 
@@ -98,7 +98,7 @@ That's it. First run will download the models (~500 MB); subsequent runs are ins
 
 ---
 
-## 📊 Results
+##  Results
 
 Sample run on a small AI/ML knowledge base:
 
@@ -109,7 +109,7 @@ Sample run on a small AI/ML knowledge base:
 | What is a neural network? | *computational models inspired by the human brain* | 0.86 | 0.58 | ✅ | 🟢 **GROUNDED** |
 | Who invented AI? | *human* | 1.00 | 0.26 | ✅ | 🟡 **LOW_INFO** |
 
-### 🔑 Key Insight
+###  Key Insight
 
 Look at the last row. The answer **"human"** has *perfect* word overlap (1.00) and even passes the LLM judge — single-metric systems would flag this as `GROUNDED`. But the **specificity check** and the **low semantic similarity** correctly identify it as a non-answer.
 
@@ -117,7 +117,7 @@ This is exactly why multi-layer detection matters: **each layer catches what the
 
 ---
 
-## 🗂️ Project Structure
+##  Project Structure
 
 ```
 llm-project/
@@ -133,7 +133,7 @@ llm-project/
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Component | Choice | Why |
 |:----------|:-------|:----|
@@ -145,7 +145,7 @@ llm-project/
 
 ---
 
-## ⚙️ Configuration
+##  Configuration
 
 Detection thresholds live in `hallucination_flag()` in `main.py`:
 
@@ -165,19 +165,7 @@ These were tuned for short answers against medium-length chunks. If your context
 
 ---
 
-## 🗺️ Roadmap
-
-- [ ] Persist FAISS index to disk for faster cold starts
-- [ ] Support PDF, DOCX, and web sources
-- [ ] Auto-calibrate thresholds from a labeled eval set
-- [ ] Replace categorical verdict with continuous confidence score (0–1)
-- [ ] Benchmark against larger generators (Mistral 7B, Llama 3)
-- [ ] Add streaming UI with Gradio
-- [ ] Export evaluation reports to CSV/JSON
-
----
-
-## 🧪 Try Breaking It
+##  Try Breaking It
 
 Want to verify the detection actually works? Add adversarial questions to the `questions` list in `main.py`:
 
@@ -194,22 +182,3 @@ If the system marks these as `GROUNDED`, your thresholds need tightening.
 
 ---
 
-## 🤝 Contributing
-
-Pull requests welcome. For substantial changes, open an issue first to discuss what you'd like to change.
-
----
-
-## 📜 License
-
-This project is released under the [MIT License](LICENSE).
-
----
-
-<div align="center">
-
-### Built by [**Akshita Potdar**](https://github.com/YourUsername)
-
-*If this project helped you, consider leaving a ⭐*
-
-</div>
