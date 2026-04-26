@@ -22,7 +22,6 @@ Large Language Models hallucinate. They generate confident-sounding answers that
 
 This project implements a **four-layer hallucination detection system** on top of a standard RAG pipeline. Instead of just generating answers, it scores their reliability across multiple independent dimensions and combines them into a single verdict.
 
-> *"The model doesn't just answer your question — it tells you whether to trust the answer."*
 
 ---
 
@@ -37,17 +36,8 @@ This project implements a **four-layer hallucination detection system** on top o
 
 ---
 
-##  How It Works
-
-<div align="center">
-  <img src="assets/architecture.svg" alt="System Architecture" width="100%"/>
-</div>
-
 ### The Four Detection Layers
 
-<div align="center">
-  <img src="assets/detection-layers.svg" alt="Detection Layers" width="100%"/>
-</div>
 
 Each signal has different failure modes — by requiring agreement across all four, the system catches issues no single check could detect alone.
 
