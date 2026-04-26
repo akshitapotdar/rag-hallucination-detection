@@ -103,7 +103,7 @@ Look at the third row. The answer **"human"** has *perfect* word overlap (1.00) 
  
 This is exactly why multi-layer detection matters: **each layer catches what the others miss.**
  
-The other three answers land at `UNCERTAIN` — high word overlap and judge approval, but the answer-to-context vectors aren't tightly aligned because answers are short (~6 words) compared to the joined retrieved chunks. Tuning the similarity threshold downward, or comparing against the best individual chunk instead of joined context, reliably promotes these to `GROUNDED`. See the [Configuration](#%EF%B8%8F-configuration) section for tuning guidance.
+The other three answers land at `UNCERTAIN` — high word overlap and judge approval, but the answer-to-context vectors aren't tightly aligned because answers are short (~6 words) compared to the joined retrieved chunks. Tuning the similarity threshold downward, or comparing against the best individual chunk instead of joined context, reliably promotes these to `GROUNDED`. 
  
 ---
 
