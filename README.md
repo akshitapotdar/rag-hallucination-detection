@@ -87,25 +87,27 @@ python main.py
 That's it. First run will download the models (~500 MB); subsequent runs are instant.
 
 ---
-
-##  Results
-
+## Results
+ 
 Sample run on a small AI/ML knowledge base:
-
-| Question | Generated Answer | Overlap | Similarity | Judge | Verdict |
-|:---------|:-----------------|:-------:|:----------:|:-----:|:-------:|
-| What is AI? | *simulation of human intelligence in machines* | 0.83 | 0.56 | ✅ | 🟢 **GROUNDED** |
-| What is machine learning? | *allows systems to learn from data* | 0.83 | 0.48 | ✅ | 🟢 **GROUNDED** |
-| What is a neural network? | *computational models inspired by the human brain* | 0.86 | 0.58 | ✅ | 🟢 **GROUNDED** |
-| Who invented AI? | *human* | 1.00 | 0.26 | ✅ | 🟡 **LOW_INFO** |
-
-###  Key Insight
-
-Look at the last row. The answer **"human"** has *perfect* word overlap (1.00) and even passes the LLM judge — single-metric systems would flag this as `GROUNDED`. But the **specificity check** and the **low semantic similarity** correctly identify it as a non-answer.
-
+ 
+| Question | Generated Answer | Overlap | Similarity | Judge | Specificity | Verdict |
+|:---------|:-----------------|:-------:|:----------:|:-----:|:-----------:|:-------:|
+| What is AI? | *simulation of human intelligence in machines* | 0.83 | 0.56 | ✅ YES | HIGH | 🟡 **UNCERTAIN** |
+| What is machine learning? | *allows systems to learn from data* | 0.83 | 0.48 | ✅ YES | HIGH | 🟡 **UNCERTAIN** |
+| Who invented AI? | *human* | 1.00 | 0.26 | ✅ YES | LOW | 🟣 **LOW_INFO** |
+| What is neural network? | *computational models inspired by the human brain* | 0.86 | 0.41 | ✅ YES | HIGH | 🟡 **UNCERTAIN** |
+ 
+### Key Insight
+ 
+Look at the third row. The answer **"human"** has *perfect* word overlap (1.00) and even passes the LLM judge — single-metric systems would mark this as grounded. But the **specificity check** catches it as `LOW_INFO`, and the **low semantic similarity** (0.26) confirms the answer is semantically thin.
+ 
 This is exactly why multi-layer detection matters: **each layer catches what the others miss.**
-
+ 
+The other three answers land at `UNCERTAIN` — high word overlap and judge approval, but the answer-to-context vectors aren't tightly aligned because answers are short (~6 words) compared to the joined retrieved chunks. Tuning the similarity threshold downward, or comparing against the best individual chunk instead of joined context, reliably promotes these to `GROUNDED`. See the [Configuration](#%EF%B8%8F-configuration) section for tuning guidance.
+ 
 ---
+
 
 ##  Project Structure
 
